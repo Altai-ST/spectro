@@ -3,7 +3,7 @@ package com.spectro.spectro.service;
 import com.spectro.spectro.entity.UserEntity;
 import com.spectro.spectro.exception.UserAlreadyExistException;
 import com.spectro.spectro.exception.UserNotFoundException;
-import com.spectro.spectro.model.Client;
+import com.spectro.spectro.model.User;
 import com.spectro.spectro.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,12 +46,12 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    public Client getOne(Long id) throws UserNotFoundException{
+    public User getOne(Long id) throws UserNotFoundException{
         UserEntity user = userRepo.findById(id).get();
         if(user == null){
             throw new UserNotFoundException("Пользователь не найден");
         }
-        return Client.toModel(user);
+        return User.toModel(user);
     }
 
     public Long delete(Long id){

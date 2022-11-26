@@ -1,22 +1,22 @@
 package com.spectro.spectro.controller;
-import com.spectro.spectro.entity.SupplierEntity;
+import com.spectro.spectro.entity.EmployeeEntity;
 import com.spectro.spectro.exception.UserAlreadyExistException;
 import com.spectro.spectro.exception.UserNotFoundException;
-import com.spectro.spectro.service.SupplierService;
+import com.spectro.spectro.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/supplier")
-public class SupplierController {
+@RequestMapping("/employee")
+public class EmployeeController {
     @Autowired
-    private SupplierService supplierService;
+    private EmployeeService employeeService;
     @CrossOrigin
     @PostMapping
-    public ResponseEntity reg(@RequestBody SupplierEntity supplier){
+    public ResponseEntity reg(@RequestBody EmployeeEntity employee){
         try {
-            supplierService.registerSup(supplier);
+            employeeService.registerEmployee(employee);
             return ResponseEntity.ok("Сохранил");
         }catch (UserAlreadyExistException e){
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -27,9 +27,9 @@ public class SupplierController {
     }
     @CrossOrigin
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody SupplierEntity supplier){
+    public ResponseEntity login(@RequestBody EmployeeEntity employee){
         try {
-            return ResponseEntity.ok(supplierService.login(supplier));
+            return ResponseEntity.ok(employeeService.login(employee));
         }catch (UserAlreadyExistException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -41,7 +41,7 @@ public class SupplierController {
     @GetMapping
     public ResponseEntity getOneClient(@RequestParam Long id){
         try{
-            return ResponseEntity.ok(supplierService.getOne(id));
+            return ResponseEntity.ok(employeeService.getOne(id));
         }catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }catch (UserNotFoundException e) {
@@ -51,9 +51,9 @@ public class SupplierController {
 
     @CrossOrigin
     @PatchMapping("{id}")
-    public ResponseEntity updates(@PathVariable("id") Long id, @RequestBody SupplierEntity user){
+    public ResponseEntity updates(@PathVariable("id") Long id, @RequestBody EmployeeEntity user){
         try {
-            supplierService.update(user, id);
+            employeeService.update(user, id);
             return ResponseEntity.ok("Изменил");
         } catch (Exception e){
             return ResponseEntity.badRequest().body("Произошла оышв");
@@ -65,7 +65,7 @@ public class SupplierController {
     @DeleteMapping("{id}")
     public ResponseEntity deleteClient(@PathVariable Long id){
         try{
-            return ResponseEntity.ok(supplierService.delete(id));
+            return ResponseEntity.ok(employeeService.delete(id));
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }

@@ -9,5 +9,4 @@ public class PhoneEntity {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 }
