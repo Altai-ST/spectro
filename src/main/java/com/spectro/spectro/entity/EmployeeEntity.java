@@ -6,42 +6,31 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="supplier")
+@Table(name="employee")
+@Getter
+@Setter
 public class EmployeeEntity {
     @Id
     @Column
-    @Getter
-    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="name")
-    @Getter
-    @Setter
-    private String username;
 
-    @Getter
-    @Setter
+    private String name;
+
     @Column(name="email")
     private String email;
 
-    @Getter
-    @Setter
-    @Column(name="number")
+    @Column(name="numberphone")
     private String numberphone;
 
-    @Getter
-    @Setter
     @Column(name = "password")
     private String password;
 
-    @Getter
-    @Setter
     @Column(name="company")
     private String company;
 
-    @Getter
-    @Setter
     @Column(name="role")
     private String role;
 }

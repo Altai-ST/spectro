@@ -10,7 +10,7 @@ public class Employee {
     private Long id;
     @Getter
     @Setter
-    private String username;
+    private String name;
     @Getter
     @Setter
     private String email;
@@ -35,7 +35,7 @@ public class Employee {
     public static Employee toModel(EmployeeEntity entity){
         Employee model = new Employee();
         model.setId(entity.getId());
-        model.setUsername(entity.getUsername());
+        model.setName(entity.getName());
         model.setEmail(entity.getEmail());
         model.setNumberphone(entity.getNumberphone());
         model.setPassword(entity.getPassword());

@@ -7,32 +7,23 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="detailordered")
-
+@Getter
+@Setter
 public class DetailorderedEntity {
     @Id
     @Column
-    @Getter
-    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
-    @Setter
     @Column(name="detail")
     private String detail;
 
-    @Getter
-    @Setter
     @Column(name="amount")
     private String amount;
 
-    @Getter
-    @Setter
     @Column(name="status")
     private Boolean status;
 
-    @Getter
-    @Setter
     @Column(name="description")
     private String description;
 }

@@ -12,25 +12,25 @@ import org.springframework.stereotype.Service;
 public class EmployeeService {
     @Autowired
     private EmployeeRepo employeeRepo;
-    public EmployeeEntity registerEmployee(EmployeeEntity supplier) throws UserAlreadyExistException {
-        if(employeeRepo.findByUsername(supplier.getUsername()) != null){
+    public EmployeeEntity registerEmployee(EmployeeEntity employee) throws UserAlreadyExistException {
+        if(employeeRepo.findByName(employee.getName()) != null){
             throw new UserAlreadyExistException("Такой поставщик уже зарегестрирован");
         }
-        else if(employeeRepo.findByEmail(supplier.getEmail())!=null){
+        else if(employeeRepo.findByEmail(employee.getEmail())!=null){
             throw new UserAlreadyExistException("Такой email уже занят");
         }
-        else if(employeeRepo.findByNumberphone(supplier.getNumberphone())!=null){
+        else if(employeeRepo.findByNumberphone(employee.getNumberphone())!=null){
             throw new UserAlreadyExistException("Такой номер уже занят");
         }
-        return employeeRepo.save(supplier);
+        return employeeRepo.save(employee);
     }
 
     public Employee getOne(Long id) throws UserNotFoundException {
-        EmployeeEntity supplier = employeeRepo.findById(id).get();
-        if(supplier == null){
+        EmployeeEntity employee = employeeRepo.findById(id).get();
+        if(employee == null){
             throw new UserNotFoundException("Пользователь не найден");
         }
-        return Employee.toModel(supplier);
+        return Employee.toModel(employee);
     }
 
     public Employee login(EmployeeEntity employee) throws UserAlreadyExistException {
@@ -44,14 +44,14 @@ public class EmployeeService {
     }
 
     public EmployeeEntity update(EmployeeEntity user, Long id) throws UserNotFoundException {
-        EmployeeEntity supplier = employeeRepo.findById(id).get();
-        if(supplier == null){
+        EmployeeEntity employee = employeeRepo.findById(id).get();
+        if(employee == null){
             throw new UserNotFoundException("Пользователь не найден");
         }
-        supplier.setUsername(user.getUsername());
-        supplier.setNumberphone(user.getNumberphone());
-        supplier.setPassword(user.getPassword());
-        return employeeRepo.save(supplier);
+        employee.setName(user.getName());
+        employee.setNumberphone(user.getNumberphone());
+        employee.setPassword(user.getPassword());
+        return employeeRepo.save(employee);
     }
     public Long delete(Long id){
         employeeRepo.deleteById(id);
