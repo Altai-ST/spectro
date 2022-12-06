@@ -19,9 +19,11 @@ public class UserService {
         else if(userRepo.findByEmail(user.getEmail())!=null){
             throw new UserAlreadyExistException("Такой email уже занят");
         }
+
         else if(userRepo.findByNumberphone(user.getNumberphone())!=null){
             throw new UserAlreadyExistException("Такой номер уже занят");
         }
+
         return userRepo.save(user);
     }
 

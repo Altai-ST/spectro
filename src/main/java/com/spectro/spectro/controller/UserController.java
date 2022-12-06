@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/client")
+@CrossOrigin(origins = "http://localhost:8080/*")
 public class UserController {
     @Autowired
     private UserService userService;
     private UserRepo userRepo;
-    @CrossOrigin
     @PostMapping
     public ResponseEntity reg(@RequestBody UserEntity user){
         try {
@@ -27,7 +27,6 @@ public class UserController {
             return ResponseEntity.badRequest().body("Произошла ошибка3");
         }
     }
-    @CrossOrigin
     @GetMapping
     public ResponseEntity getOneClient(@RequestParam Long id){
         try{
@@ -38,7 +37,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @CrossOrigin
     @PatchMapping("{id}")
     public ResponseEntity updates(@PathVariable("id") Long id, @RequestBody UserEntity user){
         try {
@@ -51,7 +49,6 @@ public class UserController {
         }
     }
 
-    @CrossOrigin
     @DeleteMapping("{id}")
     public ResponseEntity deleteClient(@PathVariable Long id){
         try{

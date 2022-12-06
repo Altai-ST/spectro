@@ -49,18 +49,18 @@ public class EmployeeController {
         }
     }
 
-    @CrossOrigin
-    @PatchMapping("{id}")
-    public ResponseEntity updates(@PathVariable("id") Long id, @RequestBody EmployeeEntity user){
-        try {
-            employeeService.update(user, id);
-            return ResponseEntity.ok("Изменил");
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body("Произошла оышв");
-        } catch (UserNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    @CrossOrigin
+//    @PatchMapping("{id}")
+//    public ResponseEntity updates(@PathVariable("id") Long id, @RequestBody EmployeeEntity user){
+//        try {
+//            employeeService.update(user, id);
+//            return ResponseEntity.ok("Изменил");
+//        } catch (Exception e){
+//            return ResponseEntity.badRequest().body("Произошла оышв");
+//        } catch (UserNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
     @CrossOrigin
     @DeleteMapping("{id}")
     public ResponseEntity deleteClient(@PathVariable Long id){
