@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laptop Main Page</title>
+</head>
+<body>
+<div th:if="${param.error} != null">
+Invalid username or password.
+</div>
+<div th:if="${param.logout} != null">
+    You have been logged out.
+</div>
+<form th:action="@{/}" method="get">
+    <div><label> User Name : <input type="text" name="email"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div>
+        <input type="submit" value="Sign In"/>
+        <a th:href="@{/registration}"><input type="button" value="Sign UP"/></a>
+        <a th:href="@{/delete-users}"><input type="button" value="Delete users"/></a>
+        <a th:href="@{/delete-users}"><input type="button" value="Delete users"/></a>
+    </div>
+</form>
+</body>
+</html>
