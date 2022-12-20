@@ -3,10 +3,18 @@ package com.spectro.spectro.controller;
 import com.spectro.spectro.entity.LaptopEntity;
 import com.spectro.spectro.enums.LaptopEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
+import com.spectro.spectro.repository.LaptopRepo;
 import com.spectro.spectro.service.LaptopService;
+import com.spectro.spectro.specifications.LaptopCriteriaRepo;
+import com.spectro.spectro.specifications.LaptopPage;
+import com.spectro.spectro.specifications.LaptopSearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -14,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 public class LaptopController {
     @Autowired
     private LaptopService laptopService;
+    @Autowired
+    private LaptopRepo laptopRepo;
 
     @GetMapping(value = "/")
     public String mainPage() {
@@ -25,11 +35,6 @@ public class LaptopController {
         return "laptopMainPage";
     }
 
-//    @GetMapping
-//    public String laptopList(){
-//
-//        return "Array";
-//    }
     @GetMapping(value = "newlaptop")
     public String newLaptop(){
         return "newLaptop";
@@ -68,8 +73,8 @@ public class LaptopController {
         }
     }
 
-
-
-//    @GetMapping
-//    public String
+    @GetMapping(value = "/filter")
+    public ResponseEntity<Page<LaptopEntity>> getLaptops(LaptopPage laptopPage, LaptopSearchCriteria laptopSearchCriteria){
+        return new ResponseEntity<>(laptopService.filter(laptopPage,laptopSearchCriteria), HttpStatus.OK);
+    }
 }

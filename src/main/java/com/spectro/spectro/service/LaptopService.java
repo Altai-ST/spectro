@@ -4,19 +4,21 @@ import com.spectro.spectro.entity.LaptopEntity;
 import com.spectro.spectro.enums.LaptopEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.repository.LaptopRepo;
+import com.spectro.spectro.specifications.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class LaptopService {
 
     @Autowired
     private LaptopRepo laptopRepo;
+    @Autowired
+    private LaptopCriteriaRepo laptopCriteriaRepo;
 
     public void save(LaptopEntity laptop){
-        this.laptopRepo.save(laptop);
+        if(laptopRepo.findByModel(laptop.getModel())==null)this.laptopRepo.save(laptop);
     }
 
     public void update(LaptopEntity laptop) throws UserNotFoundException {
@@ -73,7 +75,9 @@ public class LaptopService {
             laptopRepo.save(laptop);
         }else throw new UserNotFoundException("Can not update laptop list. It doesn't exist");
     }
-    public void filter(){
-//        List<LaptopEntity> laptops = laptopRepo.findAll()
+
+    public Page<LaptopEntity> filter(LaptopPage page, LaptopSearchCriteria laptopSearchCriteria){
+        return laptopCriteriaRepo.findAllWithFilters(page,laptopSearchCriteria);
     }
+
 }
