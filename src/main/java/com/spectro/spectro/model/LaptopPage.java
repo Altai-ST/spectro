@@ -1,4 +1,4 @@
-package com.spectro.spectro.specifications;
+package com.spectro.spectro.model;
 
 import lombok.Data;
 import org.springframework.data.domain.Sort;

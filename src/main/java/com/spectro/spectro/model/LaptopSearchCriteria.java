@@ -1,9 +1,8 @@
-package com.spectro.spectro.specifications;
+package com.spectro.spectro.model;
 
 import lombok.Data;
 
 @Data
-
 public class LaptopSearchCriteria {
     private String model;
     private String manufacturer;

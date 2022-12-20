@@ -1,6 +1,8 @@
-package com.spectro.spectro.specifications;
+package com.spectro.spectro.repository;
 
 import com.spectro.spectro.entity.LaptopEntity;
+import com.spectro.spectro.model.LaptopPage;
+import com.spectro.spectro.model.LaptopSearchCriteria;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 

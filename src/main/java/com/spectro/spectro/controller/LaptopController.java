@@ -5,16 +5,13 @@ import com.spectro.spectro.enums.LaptopEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.repository.LaptopRepo;
 import com.spectro.spectro.service.LaptopService;
-import com.spectro.spectro.specifications.LaptopCriteriaRepo;
-import com.spectro.spectro.specifications.LaptopPage;
-import com.spectro.spectro.specifications.LaptopSearchCriteria;
+import com.spectro.spectro.model.LaptopPage;
+import com.spectro.spectro.model.LaptopSearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
