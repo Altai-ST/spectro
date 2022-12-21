@@ -2,6 +2,8 @@ package com.spectro.spectro.model;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class LaptopSearchCriteria {
     private String model;
@@ -21,4 +23,7 @@ public class LaptopSearchCriteria {
     private String headphoneJack;
     private String videoCard;
     private String connectors;
+    private BigDecimal maxBigDecimal;
+    private BigDecimal minBigDecimal;
+
 }

@@ -72,4 +72,9 @@ public class LaptopController {
     public ResponseEntity<Page<LaptopEntity>> getLaptops(LaptopPage laptopPage, LaptopSearchCriteria laptopSearchCriteria){
         return new ResponseEntity<>(laptopService.filter(laptopPage,laptopSearchCriteria), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/searchModel")
+    public ResponseEntity<LaptopEntity> getOneLaptop(String model){
+        return new ResponseEntity<>(laptopService.findByModel(model), HttpStatus.OK);
+    }
 }

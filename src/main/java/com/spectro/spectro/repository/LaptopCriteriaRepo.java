@@ -112,6 +112,15 @@ public class LaptopCriteriaRepo {
         if (Objects.nonNull(searchCriteria.getVideoCard())) {
             predicates.add(criteriaBuilder.equal(root.get("videoCard"), "%" + searchCriteria.getVideoCard() + "%"));
         }
+        if (Objects.nonNull(searchCriteria.getMinBigDecimal())) {
+            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("price"), searchCriteria.getMinBigDecimal()));
+        }
+        if (Objects.nonNull(searchCriteria.getMaxBigDecimal())) {
+            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("price"),  searchCriteria.getMaxBigDecimal()));
+        }
+        if (Objects.nonNull(searchCriteria.getModel())) {
+            predicates.add(criteriaBuilder.like(root.get("model"),  "%"+searchCriteria.getModel()+"%"));
+        }
         return criteriaBuilder.and(predicates.toArray(predicates.toArray(new Predicate[0])));
     }
 }
