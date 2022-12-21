@@ -77,5 +77,6 @@ public class LaptopEntity {
     @Enumerated(EnumType.STRING)
     private LaptopEnum status;
 
-
+    @Column(name="image")
+    private String image;
 }

@@ -3,10 +3,9 @@ package com.spectro.spectro.controller;
 import com.spectro.spectro.entity.LaptopEntity;
 import com.spectro.spectro.enums.LaptopEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
-import com.spectro.spectro.repository.LaptopRepo;
-import com.spectro.spectro.service.LaptopService;
 import com.spectro.spectro.model.LaptopPage;
 import com.spectro.spectro.model.LaptopSearchCriteria;
+import com.spectro.spectro.service.LaptopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -76,5 +75,8 @@ public class LaptopController {
     @GetMapping(value = "/searchModel")
     public ResponseEntity<LaptopEntity> getOneLaptop(String model){
         return new ResponseEntity<>(laptopService.findByModel(model), HttpStatus.OK);
+    }
+    public String printRules(){
+        return "please, use just lowercase";
     }
 }
