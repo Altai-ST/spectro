@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.*;
 public class LaptopController {
     @Autowired
     private LaptopService laptopService;
-    @Autowired
-    private LaptopRepo laptopRepo;
 
     @GetMapping(value = "/")
     public String mainPage() {
