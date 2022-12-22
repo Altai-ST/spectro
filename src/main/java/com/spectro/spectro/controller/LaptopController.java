@@ -76,7 +76,22 @@ public class LaptopController {
     public ResponseEntity<LaptopEntity> getOneLaptop(String model){
         return new ResponseEntity<>(laptopService.findByModel(model), HttpStatus.OK);
     }
-    public String printRules(){
-        return "please, use just lowercase";
+
+    @PatchMapping(value = "/sell")
+    public String sell(@RequestParam("model") String model, @RequestParam("amount") int amount) throws Exception {
+        try {
+            LaptopEntity l = laptopService.findByModel(model);
+            int newAmount = l.getAmount() - amount;
+            if (newAmount==0){
+                laptopService.update(model,newAmount,LaptopEnum.sold_out);
+            } else if (newAmount>0) {
+                laptopService.update(model,newAmount);
+            }
+            return "succsess";
+        } catch (Exception e){
+            throw new Exception(e);
+        } catch (UserNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

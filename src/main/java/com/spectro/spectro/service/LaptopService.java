@@ -68,6 +68,17 @@ public class LaptopService {
         }
     }
 
+    public void update(String model, Integer amount, LaptopEnum status) throws UserNotFoundException {
+        LaptopEntity laptop1 = laptopRepo.findByModel(model);
+        if(laptop1!=null){
+            laptop1.setAmount(amount);
+            laptop1.setStatus(status);
+            laptopRepo.save(laptop1);
+        }else{
+            throw new UserNotFoundException("Can not update laptop list. It doesn't exist");
+        }
+    }
+
     public void delete(Long id) throws UserNotFoundException {
         if(laptopRepo.findById(id).get()!=null) {
             LaptopEntity laptop = laptopRepo.findById(id).get();

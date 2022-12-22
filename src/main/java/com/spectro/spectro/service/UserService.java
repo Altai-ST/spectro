@@ -1,17 +1,25 @@
 package com.spectro.spectro.service;
 
+import com.spectro.spectro.entity.PhoneEntity;
 import com.spectro.spectro.entity.UserEntity;
 import com.spectro.spectro.exception.UserAlreadyExistException;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.model.User;
+import com.spectro.spectro.repository.PhoneRepo;
 import com.spectro.spectro.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private PhoneRepo phoneRepo;
+
     public UserEntity register(UserEntity user) throws UserAlreadyExistException {
         if(userRepo.findByUsername(user.getUsername()) != null){
             throw new UserAlreadyExistException("Такой пользователь уже есть");
