@@ -2,6 +2,7 @@ package com.spectro.spectro.service;
 
 import com.spectro.spectro.entity.LaptopEntity;
 import com.spectro.spectro.enums.LaptopEnum;
+import com.spectro.spectro.exception.UserAlreadyExistException;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.model.LaptopPage;
 import com.spectro.spectro.model.LaptopSearchCriteria;
@@ -19,13 +20,13 @@ public class LaptopService {
     @Autowired
     private LaptopCriteriaRepo laptopCriteriaRepo;
 
-    public void save(LaptopEntity laptop){
+    public void save(LaptopEntity laptop) throws UserAlreadyExistException {
         if(laptopRepo.findByModel(laptop.getModel())==null){
             if(laptop.getAmount()>0){
                 laptop.setStatus(LaptopEnum.available);
-            }else laptop.setStatus(LaptopEnum.deleted);
-            this.laptopRepo.save(laptop);
+            }
         }
+        laptopRepo.save(laptop);
     }
 
     public void update(LaptopEntity laptop) throws UserNotFoundException {
@@ -80,10 +81,9 @@ public class LaptopService {
     }
 
     public void delete(Long id) throws UserNotFoundException {
-        if(laptopRepo.findById(id).get()!=null) {
-            LaptopEntity laptop = laptopRepo.findById(id).get();
-            laptop.setStatus(LaptopEnum.deleted);
-        }else throw new UserNotFoundException("Can not update laptop list. It doesn't exist");
+        laptopRepo.findById(id).get();
+        LaptopEntity laptop = laptopRepo.findById(id).get();
+        laptop.setStatus(LaptopEnum.deleted);
     }
 
     public void delete(String model) throws UserNotFoundException {

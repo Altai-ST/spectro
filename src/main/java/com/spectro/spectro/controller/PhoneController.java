@@ -1,6 +1,7 @@
 package com.spectro.spectro.controller;
 
 import com.spectro.spectro.entity.PhoneEntity;
+import com.spectro.spectro.entity.PhoneEntity;
 import com.spectro.spectro.enums.PhoneEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.model.PhonePage;
@@ -46,6 +47,17 @@ public class PhoneController {
     public String updatePhone(@RequestParam("model") String model, @RequestParam("amount") Integer amount) throws Exception {
         try {
             phoneService.update(model, amount);
+            return "succsess";
+        } catch (UserNotFoundException e) {
+            throw new RuntimeException(e);
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+    }
+    @PatchMapping(value = "/updatePhoneByEntity")
+    public String updatePhone(@RequestBody PhoneEntity phone) throws Exception {
+        try {
+            phoneService.update(phone);
             return "succsess";
         } catch (UserNotFoundException e) {
             throw new RuntimeException(e);

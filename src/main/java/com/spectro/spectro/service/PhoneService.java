@@ -21,7 +21,7 @@ public class PhoneService {
         if(phoneRepo.findByModel(phone.getModel())==null){
             if(phone.getAmount()>0){
                 phone.setStatus(PhoneEnum.available);
-            }else phone.setStatus(PhoneEnum.deleted);
+            }
             this.phoneRepo.save(phone);
         }
 

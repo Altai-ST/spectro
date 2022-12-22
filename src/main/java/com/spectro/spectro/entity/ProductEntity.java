@@ -7,4 +7,5 @@ public abstract class ProductEntity {
     Long id;
     String model;
     int amount;
+    String image;
 }

@@ -56,6 +56,18 @@ public class LaptopController {
         }
     }
 
+    @PatchMapping(value = "/updateLaptopByEntity")
+    public String updateLaptop(@RequestBody LaptopEntity laptop) throws Exception {
+        try {
+            laptopService.update(laptop);
+            return "succsess";
+        } catch (UserNotFoundException e) {
+            throw new RuntimeException(e);
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+    }
+
     @DeleteMapping(value = "/deleteLaptop")
     public String deleteLaptop(@RequestParam("model") String model){
         try {
