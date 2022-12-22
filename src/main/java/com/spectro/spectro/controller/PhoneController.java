@@ -1,8 +1,6 @@
 package com.spectro.spectro.controller;
 
 import com.spectro.spectro.entity.PhoneEntity;
-import com.spectro.spectro.entity.PhoneEntity;
-import com.spectro.spectro.enums.PhoneEnum;
 import com.spectro.spectro.enums.PhoneEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.model.PhonePage;
@@ -13,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -70,8 +70,12 @@ public class PhoneController {
     }
 
     @GetMapping(value = "/filter")
-    public ResponseEntity<Page<PhoneEntity>> getPhones(PhonePage phonePage, PhoneSearchCriteria phoneSearchCriteria){
-        return new ResponseEntity<>(phoneService.filter(phonePage,phoneSearchCriteria), HttpStatus.OK);
+    public ResponseEntity<List<PhoneEntity>> getPhones(PhonePage phonePage, PhoneSearchCriteria phoneSearchCriteria){
+        Page<PhoneEntity> p = phoneService.filter(phonePage,phoneSearchCriteria);
+        List<PhoneEntity> pa = p.getContent();
+        System.out.println(pa.get(pa.toArray().length-1).toString());
+        System.out.println(pa.toArray().length-1);
+        return new ResponseEntity<>(pa, HttpStatus.OK);
     }
 
     @GetMapping(value = "/searchModel")
@@ -83,7 +87,7 @@ public class PhoneController {
     public String sell(@RequestParam("model") String model, @RequestParam("amount") int amount) throws Exception {
         try {
             PhoneEntity l = phoneService.findByModel(model);
-            int newAmount = l.getKolichestvo() - amount;
+            int newAmount = l.getAmount() - amount;
             if (newAmount==0){
                 phoneService.update(model,newAmount, PhoneEnum.sold_out);
             } else if (newAmount>0) {

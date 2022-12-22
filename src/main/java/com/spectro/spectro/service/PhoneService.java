@@ -1,8 +1,6 @@
 package com.spectro.spectro.service;
 
 import com.spectro.spectro.entity.PhoneEntity;
-import com.spectro.spectro.entity.PhoneEntity;
-import com.spectro.spectro.enums.PhoneEnum;
 import com.spectro.spectro.enums.PhoneEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.model.PhonePage;
@@ -21,7 +19,7 @@ public class PhoneService {
     private PhoneCriteriaRepo phoneCriteriaRepo;
     public void save(PhoneEntity phone){
         if(phoneRepo.findByModel(phone.getModel())==null){
-            if(phone.getKolichestvo()>0){
+            if(phone.getAmount()>0){
                 phone.setStatus(PhoneEnum.available);
             }else phone.setStatus(PhoneEnum.deleted);
             this.phoneRepo.save(phone);
@@ -32,7 +30,7 @@ public class PhoneService {
     public void update(PhoneEntity phone) throws UserNotFoundException {
         PhoneEntity phone1 = phoneRepo.findByModel(phone.getModel());
         if(phoneRepo.findByModel(phone.getModel())!=null){
-            if (phone.getKolichestvo()>=0)phone1.setKolichestvo(phone.getKolichestvo());
+            if (phone.getAmount()>=0)phone1.setAmount(phone.getAmount());
             if(phone.getChastotaObnovleniya()!=null)phone1.setChastotaObnovleniya(phone.getChastotaObnovleniya());
             if(phone.getDinamic()!=null)phone1.setDinamic(phone.getDinamic());
             if(phone.getDopolnitelnyiModulKamer()!=null)phone1.setDopolnitelnyiModulKamer(phone.getDopolnitelnyiModulKamer());
@@ -67,7 +65,7 @@ public class PhoneService {
     public void update(String model, Integer amount) throws UserNotFoundException {
         PhoneEntity phone1 = phoneRepo.findByModel(model);
         if(phone1!=null){
-            phone1.setKolichestvo(amount);
+            phone1.setAmount(amount);
             phoneRepo.save(phone1);
         }else{
             throw new UserNotFoundException("Can not update phone list. It doesn't exist");
@@ -77,7 +75,7 @@ public class PhoneService {
     public void update(String model, Integer amount, PhoneEnum status) throws UserNotFoundException {
         PhoneEntity phone1 = phoneRepo.findByModel(model);
         if(phone1!=null){
-            phone1.setKolichestvo(amount);
+            phone1.setAmount(amount);
             phone1.setStatus(status);
             phoneRepo.save(phone1);
         }else{

@@ -25,5 +25,4 @@ public class LaptopSearchCriteria {
     private String connectors;
     private BigDecimal maxBigDecimal;
     private BigDecimal minBigDecimal;
-
 }

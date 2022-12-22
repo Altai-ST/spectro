@@ -6,11 +6,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Data
-public class PhoneEntity {
+public class PhoneEntity extends ProductEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -82,7 +81,7 @@ public class PhoneEntity {
     private String tipProtsessora;
 
     @Column(name = "kolichestvo")
-    private Integer kolichestvo;
+    private int amount;
 
     @Column(name = "prise")
     private BigDecimal prise;
@@ -96,4 +95,38 @@ public class PhoneEntity {
 
     @Column(name="image")
     private String image;
+
+    @Override
+    public String toString() {
+        return "PhoneEntity{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", proizvoditel='" + proizvoditel + '\'' +
+                ", stranaProizvoditel='" + stranaProizvoditel + '\'' +
+                ", tipPamyati='" + tipPamyati + '\'' +
+                ", vstroennayaPamyat='" + vstroennayaPamyat + '\'' +
+                ", operativnayaPamyat='" + operativnayaPamyat + '\'' +
+                ", tipEkrana='" + tipEkrana + '\'' +
+                ", chastotaObnovleniya='" + chastotaObnovleniya + '\'' +
+                ", razmerEkrana='" + razmerEkrana + '\'' +
+                ", razreshenieEkrana='" + razreshenieEkrana + '\'' +
+                ", dopolnitelnyiModulKamer='" + dopolnitelnyiModulKamer + '\'' +
+                ", osnovnoiModulKamer='" + osnovnoiModulKamer + '\'' +
+                ", shirokougolnyiModulKamer='" + shirokougolnyiModulKamer + '\'' +
+                ", frontalnayaKamera='" + frontalnayaKamera + '\'' +
+                ", dinamic='" + dinamic + '\'' +
+                ", vyhodNaushnikov='" + vyhodNaushnikov + '\'' +
+                ", razemy='" + razemy + '\'' +
+                ", kolichestvoSIMKart='" + kolichestvoSIMKart + '\'' +
+                ", tipSIMKart='" + tipSIMKart + '\'' +
+                ", nfc=" + nfc +
+                ", zashitaOtVlagi='" + zashitaOtVlagi + '\'' +
+                ", tipProtsessora='" + tipProtsessora + '\'' +
+                ", amount=" + amount +
+                ", prise=" + prise +
+                ", opisanie='" + opisanie + '\'' +
+                ", status=" + status +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-public class LaptopEntity {
+public class LaptopEntity extends ProductEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
