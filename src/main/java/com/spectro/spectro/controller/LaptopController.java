@@ -22,20 +22,16 @@ public class LaptopController {
     @Autowired
     private LaptopService laptopService;
 
-    @GetMapping(value = "/")
-    public String mainPage() {
-        return "laptopMainPage";
+    @GetMapping(value = "find-by-id")
+    public LaptopEntity getLaptopById(Long id){
+        return laptopService.findById(id);
     }
 
-    @GetMapping
-    public String laptopMainPage(){
-        return "laptopMainPage";
+    @GetMapping(value = "find-by-model")
+    public LaptopEntity getLaptopByModel(String model){
+        return laptopService.findByModel(model);
     }
 
-    @GetMapping(value = "newlaptop")
-    public String newLaptop(){
-        return "newLaptop";
-    }
 
     @PostMapping(value = "/saveNewLaptop")
     public ResponseEntity saveNewLaptop(@RequestBody LaptopEntity laptop){

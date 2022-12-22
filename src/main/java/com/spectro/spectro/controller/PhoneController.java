@@ -21,19 +21,14 @@ public class PhoneController {
     @Autowired
     private PhoneService phoneService;
 
-    @GetMapping(value = "/")
-    public String mainPage() {
-        return "phoneMainPage";
+    @GetMapping(value = "find-by-id")
+    public PhoneEntity getPhoneById(Long id){
+        return phoneService.findById(id);
     }
 
-    @GetMapping
-    public String phoneMainPage(){
-        return "phoneMainPage";
-    }
-
-    @GetMapping(value = "newphone")
-    public String newPhone(){
-        return "newPhone";
+    @GetMapping(value = "find-by-model")
+    public PhoneEntity getPhoneByModel(String model){
+        return phoneService.findByModel(model);
     }
 
     @PostMapping(value = "/saveNewPhone")
@@ -63,6 +58,16 @@ public class PhoneController {
     public String deletePhone(@RequestParam("model") String model){
         try {
             phoneService.delete(model);
+            return "Success";
+        } catch (UserNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @DeleteMapping(value = "/deletePhone-by-id")
+    public String deletePhone(@RequestParam("id") Long id){
+        try {
+            phoneService.delete(id);
             return "Success";
         } catch (UserNotFoundException e) {
             throw new RuntimeException(e);

@@ -101,5 +101,8 @@ public class LaptopService {
     public LaptopEntity findByModel(String model){
         return laptopRepo.findByModel(model);
     }
+    public LaptopEntity findById(Long id){
+        return laptopRepo.findById(id).get();
+    }
 
 }

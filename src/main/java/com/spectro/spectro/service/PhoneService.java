@@ -105,5 +105,7 @@ public class PhoneService {
     public PhoneEntity findByModel(String model){
         return phoneRepo.findByModel(model);
     }
-
+    public PhoneEntity findById(Long id){
+        return phoneRepo.findById(id).get();
+    }
 }
