@@ -1,7 +1,6 @@
 package com.spectro.spectro.controller;
 
 import com.spectro.spectro.entity.PhoneEntity;
-import com.spectro.spectro.entity.PhoneEntity;
 import com.spectro.spectro.enums.PhoneEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.model.PhonePage;

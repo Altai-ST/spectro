@@ -1,7 +1,6 @@
 package com.spectro.spectro.controller;
 
 import com.spectro.spectro.entity.LaptopEntity;
-import com.spectro.spectro.entity.LaptopEntity;
 import com.spectro.spectro.enums.LaptopEnum;
 import com.spectro.spectro.exception.UserNotFoundException;
 import com.spectro.spectro.model.LaptopPage;
